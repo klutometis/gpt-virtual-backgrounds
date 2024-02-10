@@ -1,5 +1,0 @@
-filegroup(
-    name = "shflags",
-    srcs = glob(["src/**/*.sh"]),
-    visibility = ["//visibility:public"],
-)

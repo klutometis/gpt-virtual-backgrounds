@@ -1,27 +1,56 @@
 #!/usr/bin/env sh
-set -e
-set -o pipefail
+#
+# Queries GPT for virtual backgrounds; do with a little `while true` and `sleep`
+# action to spice up life.
+#
+. external/shflags/shflags
+
+DEFINE_string 'model' 'dall-e-3' 'GPT model'
+DEFINE_string 'prompt' "$(cat default.prompt)" 'Prompt to use'
+DEFINE_integer 'n' 1 'How many to generate'
+DEFINE_string 'size' '1792x1024' 'Size of the image'
+DEFINE_string 'output' "$HOME/background.webp" 'Where to write the image'
 
 function make_gpt_params() {
+    # Fill in the JSON request-template with various params.
     jq --null-input \
-       --arg model "dall-e-3" \
-       --arg prompt "Can you create a simple virtual background which delights lovers of math and music? Shouldn't be too busy." \
-       --arg n "1" \
-       --arg size "1792x1024" \
+       --arg model "${FLAGS_model}" \
+       --arg prompt "${FLAGS_prompt}" \
+       --arg n "${FLAGS_n}" \
+       --arg size "${FLAGS_size}" \
        -f "gpt.jq"
 }
 
-# Temporarily keeping images around, just in case they're interesting; also,
-# makes intra-stream swaps seamless.
-image="$(mktemp --suffix=gpt-virtual-background-XXXXXX.webp)"
+function call_gpt() {
+    # Invoke GPT using the above params; and locally encrypted key.
+    curl -X POST "https://api.openai.com/v1/images/generations" \
+         -H "Authorization: Bearer $(cat openai-api.key)" \
+         -H "Content-Type: application/json" \
+         -d "$(make_gpt_params)"
+}
 
-curl -X POST "https://api.openai.com/v1/images/generations" \
-     -H "Authorization: Bearer $(cat openai-api.key)" \
-     -H "Content-Type: application/json" \
-     -d "$(make_gpt_params)" | \
-    tee /dev/stderr | \
-    jq '.data[0].url' | \
-    xargs curl | \
-    convert - -resize 1920x1080 "${image}"
+function main() {
+    # Temporarily keeping images around, just in case they're interesting; also,
+    # makes intra-stream swaps seamless.
+    local image="$(mktemp --suffix=gpt-virtual-background-XXXXXX.webp)"
 
-cp -v "${image}" ~/Downloads/background.webp
+     call_gpt | \               # Generate the image.
+         tee /dev/stderr | \    # Also divert output to user.
+         jq '.data[0].url' | \  # Extract the image URL.
+         xargs curl | \         # Download the image
+         convert - -resize "${FLAGS_size}" "${image}" # Resize and serialize.
+
+     # Keep the original until reaped; but also copy to destination.
+     cp -v "${image}" "${FLAGS_output}"
+}
+
+# Fail early.
+set -e
+set -o pipefail
+
+# Parse flags.
+FLAGS "$@" || exit $?
+eval set -- "${FLAGS_ARGV}"
+
+# Start!
+main "$@"
