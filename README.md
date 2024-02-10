@@ -31,7 +31,7 @@ flags:
   --model:  GPT model
     (default: 'dall-e-3')
   --output:  Where to write the image
-    (default: '/home/danenberg/background.webp')
+    (default: '$HOME/background.webp')
   --prompt:  Prompt to use (takes precedence over --prompt_file)
     (default: '')
   --prompt_file:  Prompt file to use
