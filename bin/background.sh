@@ -1,7 +1,9 @@
 #!/usr/bin/env sh
 #
-# Generate a virtual background à la GPT; do with a little `while true` and
-# `sleep` action to spice up life.
+# Generate a virtual background à la GPT; create a scene with OBS;* add a little
+# `while true` and `sleep` to spice it up.
+#
+# * https://obsproject.com/
 #
 . external/shflags/shflags
 
