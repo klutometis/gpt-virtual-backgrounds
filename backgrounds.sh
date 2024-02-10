@@ -34,14 +34,14 @@ function main() {
     # makes intra-stream swaps seamless.
     local image="$(mktemp --suffix=gpt-virtual-background-XXXXXX.webp)"
 
-     call_gpt | \               # Generate the image.
-         tee /dev/stderr | \    # Also divert output to user.
-         jq '.data[0].url' | \  # Extract the image URL.
-         xargs curl | \         # Download the image
+    call_gpt |                  # Generate the image.
+         tee /dev/stderr |      # Also divert output to user.
+         jq '.data[0].url' |    # Extract the image URL.
+         xargs curl |           # Download the image
          convert - -resize "${FLAGS_size}" "${image}" # Resize and serialize.
 
-     # Keep the original until reaped; but also copy to destination.
-     cp -v "${image}" "${FLAGS_output}"
+    # Keep the original until reaped; but also copy to destination.
+    cp -v "${image}" "${FLAGS_output}"
 }
 
 # Fail early.
