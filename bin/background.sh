@@ -1,9 +1,14 @@
 #!/usr/bin/env bash
 #
-# Generate a virtual background à la GPT; create a scene with OBS;* add a little
-# `while true` and `sleep` to spice it up.
+# Generate a virtual background à la GPT; create a scene with OBS;* and add a
+# little `while true` and `sleep` to spice it up mid-stream:
+#
+#   bazel run -c opt //bin:background -- --api_key=[OpenAI API key]
+#
+# Requires Bazilisk.†
 #
 # * https://obsproject.com/
+# † https://github.com/bazelbuild/bazelisk
 #
 . external/shflags/shflags
 
