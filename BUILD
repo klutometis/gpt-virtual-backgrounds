@@ -1,6 +1,6 @@
 sh_binary(
-    name = "backgrounds",
-    srcs = ["backgrounds.sh"],
+    name = "background",
+    srcs = ["background.sh"],
     data = [
         "@shflags//:shflags",
         "gpt-params.jq",

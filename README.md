@@ -1,7 +1,7 @@
 # GPT Virtual Backgrounds
 
-Generate some virtual backgrounds using GPT for spicing up your meetings a
-little bit.
+Generate a virtual background using GPT for spicing up your meetings a little
+bit.
 
 ## Running
 
@@ -9,7 +9,7 @@ little bit.
   2. Run:
 
 ```
-bazel run -c opt :backgrounds
+bazel run -c opt :background
 ```
 
 Generates something like:
@@ -21,8 +21,8 @@ Generates something like:
 See full usage:
 
 ```
-bazel run -c opt :backgrounds -- --help
-USAGE: backgrounds [flags] args
+bazel run -c opt :background -- --help
+USAGE: background [flags] args
 flags:
 flags:
   --model:  GPT model (default: 'dall-e-3')

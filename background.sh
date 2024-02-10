@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 #
-# Queries GPT for virtual backgrounds; do with a little `while true` and `sleep`
-# action to spice up life.
+# Generate a virtual background à la GPT; do with a little `while true` and
+# `sleep` action to spice up life.
 #
 . external/shflags/shflags
 
