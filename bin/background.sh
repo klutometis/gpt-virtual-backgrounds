@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 #
 # Generate a virtual background à la GPT; create a scene with OBS;* add a little
 # `while true` and `sleep` to spice it up.
