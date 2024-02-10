@@ -14,7 +14,7 @@ bazel run -c opt :backgrounds
 
 Generates something like:
 
-[Example background](./background.webp)
+![Example background](./background.webp)
 
 ## Options
 
