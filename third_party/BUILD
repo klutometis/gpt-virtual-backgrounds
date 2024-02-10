@@ -1,1 +1,1 @@
-exports_files(["shflags.BUILD"])
+exports_files(glob(["*.BUILD"]))
