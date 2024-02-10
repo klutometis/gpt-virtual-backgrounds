@@ -24,7 +24,6 @@ See full usage:
 bazel run -c opt :background -- --help
 USAGE: background [flags] args
 flags:
-flags:
   --api_key:  API key (takes precedence over --api_key_file) (default: '')
   --api_key_file:  API key file (default: 'openai-api.key')
   --model:  GPT model (default: 'dall-e-3')
