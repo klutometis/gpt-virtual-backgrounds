@@ -12,6 +12,10 @@ little bit.
 bazel run -c opt :backgrounds
 ```
 
+Generates something like:
+
+[Example background](./background.webp)
+
 ## Options
 
 Change the model with the `--model` flag, which defaults to `dall-e-3`; also
