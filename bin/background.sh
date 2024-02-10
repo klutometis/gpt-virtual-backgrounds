@@ -9,9 +9,13 @@
 #
 # * https://obsproject.com/
 # † https://github.com/bazelbuild/bazelisk
+
+# shFlags implements Google commandline-style flags.*
 #
+# * https://github.com/kward/shflags
 . external/shflags/shflags
 
+# Define flags.
 DEFINE_string 'api_key' '' 'API key (takes precedence over --api_key_file)'
 DEFINE_string 'api_key_file' 'data/keys/openai-api.key' 'API key file'
 DEFINE_string 'model' 'dall-e-3' 'GPT model'
