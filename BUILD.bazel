@@ -1,0 +1,5 @@
+sh_binary(
+    name = "backgrounds",
+    srcs = ["backgrounds.sh"],
+    data = ["//third_party/shflags", "gpt.jq"],
+)
