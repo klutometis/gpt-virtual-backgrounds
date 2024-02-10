@@ -5,8 +5,6 @@ little bit.
 
 ## Running
 
-Run followingly:
-
   1. Install [Bazelisk](https://github.com/bazelbuild/bazelisk).
   2. Run:
 
