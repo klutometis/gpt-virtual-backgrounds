@@ -5,13 +5,17 @@
 #
 . external/shflags/shflags
 
-DEFINE_string 'model' 'dall-e-3' 'GPT model'
-DEFINE_string 'prompt' "$(cat default.prompt)" 'Prompt to use'
 DEFINE_integer 'n' 1 'How many to generate'
-DEFINE_string 'size' '1792x1024' 'Size of the image'
+DEFINE_string 'model' 'dall-e-3' 'GPT model'
 DEFINE_string 'output' "$HOME/background.webp" 'Where to write the image'
+DEFINE_string 'prompt' '' 'Prompt to use; takes precedence over --prompt_file'
+DEFINE_string 'prompt_file' 'math-and-music.prompt' 'Prompt file to use'
+DEFINE_string 'size' '1792x1024' 'Size of the image'
 
 function make_gpt_params() {
+    # Either use --prompt or the contents of --prompt_file.
+    prompt="${FLAGS_prompt:-$(cat "${FLAGS_prompt_file}")}"
+
     # Fill in the JSON request-template with various params.
     jq --null-input \
        --arg model "${FLAGS_model}" \

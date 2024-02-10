@@ -3,8 +3,8 @@ sh_binary(
     srcs = ["backgrounds.sh"],
     data = [
         "@shflags//:shflags",
-        "default.prompt",
         "gpt-params.jq",
+        "math-and-music.prompt",
         "openai-api.key",
     ],
 )
