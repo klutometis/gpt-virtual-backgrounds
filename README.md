@@ -1,7 +1,11 @@
 # GPT Virtual Backgrounds
 
 Generate some virtual backgrounds using GPT for spicing up your meetings a
-little bit; run followingly:
+little bit.
+
+## Running
+
+Run followingly:
 
   1. Install [Bazelisk](https://github.com/bazelbuild/bazelisk).
   2. Run:
