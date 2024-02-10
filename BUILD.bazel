@@ -2,7 +2,7 @@ sh_binary(
     name = "backgrounds",
     srcs = ["backgrounds.sh"],
     data = [
-        "@shflags//:shflags_lib",
+        "@shflags//:shflags",
         "default.prompt",
         "gpt.jq",
         "openai-api.key",
