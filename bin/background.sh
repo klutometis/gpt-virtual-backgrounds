@@ -6,11 +6,11 @@
 . external/shflags/shflags
 
 DEFINE_string 'api_key' '' 'API key (takes precedence over --api_key_file)'
-DEFINE_string 'api_key_file' 'openai-api.key' 'API key file'
+DEFINE_string 'api_key_file' 'data/keys/openai-api.key' 'API key file'
 DEFINE_string 'model' 'dall-e-3' 'GPT model'
 DEFINE_string 'output' "$HOME/background.webp" 'Where to write the image'
 DEFINE_string 'prompt' '' 'Prompt to use (takes precedence over --prompt_file)'
-DEFINE_string 'prompt_file' 'math-and-music.prompt' 'Prompt file to use'
+DEFINE_string 'prompt_file' 'data/prompts/math-and-music.prompt' 'Prompt file to use'
 DEFINE_string 'size' '1792x1024' 'Size of the image'
 
 function make_gpt_params() {
@@ -23,7 +23,7 @@ function make_gpt_params() {
        --arg n "1" \
        --arg prompt "${prompt}" \
        --arg size "${FLAGS_size}" \
-       -f "gpt-params.jq"
+       -f "scripts/gpt-params.jq"
 }
 
 function call_gpt() {

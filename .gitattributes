@@ -1,1 +1,1 @@
-openai-api.key filter=git-crypt diff=git-crypt
+data/keys/openai-api.key filter=git-crypt diff=git-crypt

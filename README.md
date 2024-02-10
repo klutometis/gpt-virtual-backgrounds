@@ -9,7 +9,7 @@ bit.
   2. Run:
 
 ```
-bazel run -c opt :background
+bazel run -c opt //bin:background -- --api_key=[OpenAI API key]
 ```
 
 Generates something like:
