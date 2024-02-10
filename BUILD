@@ -4,7 +4,7 @@ sh_binary(
     data = [
         "@shflags//:shflags",
         "default.prompt",
-        "gpt.jq",
+        "gpt-params.jq",
         "openai-api.key",
     ],
 )

@@ -18,7 +18,7 @@ function make_gpt_params() {
        --arg prompt "${FLAGS_prompt}" \
        --arg n "${FLAGS_n}" \
        --arg size "${FLAGS_size}" \
-       -f "gpt.jq"
+       -f "gpt-params.jq"
 }
 
 function call_gpt() {
