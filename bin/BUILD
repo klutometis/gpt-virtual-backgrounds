@@ -4,7 +4,7 @@ sh_binary(
     data = [
         "//data/keys:openai-api.key",
         "//data/prompts:math-and-music.prompt",
-        "//scripts:gpt-params.jq",
+        "//data/scripts:gpt-params.jq",
         "@shflags//:shflags",
     ],
 )
