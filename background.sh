@@ -5,9 +5,11 @@
 #
 . external/shflags/shflags
 
+DEFINE_string 'api_key' '' 'API key (takes precedence over --api_key_file)'
+DEFINE_string 'api_key_file' 'openai-api.key' 'API key file'
 DEFINE_string 'model' 'dall-e-3' 'GPT model'
 DEFINE_string 'output' "$HOME/background.webp" 'Where to write the image'
-DEFINE_string 'prompt' '' 'Prompt to use; takes precedence over --prompt_file'
+DEFINE_string 'prompt' '' 'Prompt to use (takes precedence over --prompt_file)'
 DEFINE_string 'prompt_file' 'math-and-music.prompt' 'Prompt file to use'
 DEFINE_string 'size' '1792x1024' 'Size of the image'
 
@@ -25,9 +27,11 @@ function make_gpt_params() {
 }
 
 function call_gpt() {
+    local api_key="${FLAGS_api_key:-$(cat "${FLAGS_api_key_file}")}"
+
     # Invoke GPT using the above params; and locally encrypted key.
     curl -X POST "https://api.openai.com/v1/images/generations" \
-         -H "Authorization: Bearer $(cat openai-api.key)" \
+         -H "Authorization: Bearer ${api_key}" \
          -H "Content-Type: application/json" \
          -d "$(make_gpt_params)"
 }
