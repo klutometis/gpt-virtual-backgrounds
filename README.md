@@ -18,21 +18,17 @@ Generates something like:
 
 ## Options
 
-Change the model with the `--model` flag, which defaults to `dall-e-3`; also
-change the prompt with `--prompt` (see default prompt in `prompt.default`). Size
-can be modified with `--size` (default `1792x1024`); and output with `--output`
-(default `$HOME/background.webp`).
-
-Full usage:
+See full usage:
 
 ```
-$ bazel run -c opt :backgrounds -- --help
+bazel run -c opt :backgrounds -- --help
 USAGE: backgrounds [flags] args
 flags:
-  --model:  GPT model (default: 'dall-e-3')
-  --prompt:  Prompt to use (default: 'Can you create a simple virtual background which delights lovers of math and music? Shouldn't be too busy.')
   --n:  How many to generate (default: 1)
-  --size:  Size of the image (default: '1792x1024')
+  --model:  GPT model (default: 'dall-e-3')
   --output:  Where to write the image (default: '$HOME/background.webp')
+  --prompt:  Prompt to use; takes precedence over --prompt_file (default: '')
+  --prompt_file:  Prompt file to use (default: 'math-and-music.prompt')
+  --size:  Size of the image (default: '1792x1024')
   -h,--help:  show this help (default: false)
 ```
