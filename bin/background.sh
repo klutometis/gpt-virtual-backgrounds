@@ -26,7 +26,7 @@ DEFINE_string 'prompt_file' 'data/prompts/math-and-music.prompt' 'Prompt file to
 DEFINE_string 'size' '1792x1024' 'Size of the image'
 
 function make_gpt_params() {
-    # Either use --prompt or the contents of --prompt_file.
+    # Either use --prompt or the contents of --prompt_file (in that order).
     local prompt="${FLAGS_prompt:-$(cat "${FLAGS_prompt_file}")}"
 
     # Fill in the JSON request-template with various params.
@@ -39,6 +39,7 @@ function make_gpt_params() {
 }
 
 function call_gpt() {
+    # Either use --api_key or the contents of --api_key_file (in that order).
     local api_key="${FLAGS_api_key:-$(cat "${FLAGS_api_key_file}")}"
 
     # Invoke GPT using the above params; and locally encrypted key.
