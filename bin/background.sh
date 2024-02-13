@@ -23,7 +23,8 @@ DEFINE_string 'model' 'dall-e-3' 'GPT model'
 DEFINE_string 'output' "$HOME/background.webp" 'Where to write the image'
 DEFINE_string 'prompt' '' 'Prompt to use (takes precedence over --prompt_file)'
 DEFINE_string 'prompt_file' 'data/prompts/math-and-music.prompt' 'Prompt file to use'
-DEFINE_string 'size' '1792x1024' 'Size of the image'
+DEFINE_string 'size' '1792x1024' 'Size of the GPT image'
+DEFINE_string 'size_final' '1920x1080' 'Size of the GPT image'
 
 function make_gpt_params() {
     # Either use --prompt or the contents of --prompt_file (in that order).
@@ -58,7 +59,7 @@ function main() {
          tee /dev/stderr |      # Also divert output to user.
          jq '.data | first | .url' |    # Extract the image URL.
          xargs curl |           # Download the image
-         convert - -resize "${FLAGS_size}" "${image}" # Resize and serialize.
+         convert - -resize "${FLAGS_size_final}" "${image}" # Resize
 
     # Keep the original until reaped; but also copy to destination.
     cp -v "${image}" "${FLAGS_output}"
