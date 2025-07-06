@@ -54,6 +54,10 @@ log info "Final EVENTS variable: '${EVENTS}'" >&2
 # Create temporary file for the prompt
 PROMPT_FILE=$(mktemp --suffix=.prompt)
 
+# Add some randomness/variation elements
+VARIATION_ELEMENTS=("moonlight" "starlight" "dawn mist" "ocean spray" "golden hour" "twilight shadows")
+RANDOM_ELEMENT=${VARIATION_ELEMENTS[$RANDOM % ${#VARIATION_ELEMENTS[@]}]}
+
 # Write multi-line prompt to temp file
 cat > "$PROMPT_FILE" << EOF
 The eternal feminine, *das ewig Weibliche*, as it appears on this day—$DATE $TIME_CONTEXT.
@@ -61,19 +65,12 @@ The eternal feminine, *das ewig Weibliche*, as it appears on this day—$DATE $T
 Ancient Greek festival context: $EVENTS
 $DDATE_INFO
 
-Generate a captivating image of feminine divinity with siren-like allure:
-flowing hair that moves like water or silk, eyes that hold ancient wisdom and mystery,
-natural beauty that enchants and mesmerizes, subtle golden ratios in proportions
-but expressed through organic curves and flowing forms rather than rigid geometry.
+Generate a captivating image of feminine divinity with siren-like allure.
+Incorporate $RANDOM_ELEMENT for atmospheric variation.
 
-Think ocean goddess, water nymph, or enchanting siren - natural yet divine,
-alluring yet powerful, with flowing elements that suggest both water and wind.
-Soft, luminous skin, flowing drapery, and an expression that suggests both
-invitation and mystery.
-
-Blend the energy of today's deities with timeless feminine magnetism.
-Emphasize natural beauty, flowing movement, enchanting presence, and mythic allure.
-Make her beautiful and captivating while maintaining divine mystery.
+Be creative and surprising while maintaining divine beauty and mystery.
+Vary the composition, colors, and mood - each generation should feel unique.
+Surprise me with your interpretation.
 EOF
 
 # Get API key
