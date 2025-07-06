@@ -95,6 +95,30 @@ function main() {
     log info "Outputting image to stdout" >&2
     cat "${image}"
   fi
+
+  # Archive functionality - save with timestamp
+  local archive_dir="$HOME/var/backgrounds"
+  local timestamp=$(date +"%Y%m%d_%H%M%S")
+
+  # Create archive directory if it doesn't exist
+  mkdir -p "$archive_dir"
+
+  # Save image and prompt to archive
+  local archive_image="$archive_dir/${timestamp}.png"
+  local archive_prompt="$archive_dir/${timestamp}.txt"
+
+  # Copy image to archive
+  cp "$image" "$archive_image"
+  log info "Archived image to: $archive_image" >&2
+
+  # Save prompt to archive
+  local prompt="${FLAGS_prompt:-$(cat "${FLAGS_prompt_file}")}"
+  echo "$prompt" > "$archive_prompt"
+  log info "Archived prompt to: $archive_prompt" >&2
+
+  # Update latest.png symlink
+  ln -sf "$archive_image" "$archive_dir/latest.png"
+  log info "Updated latest.png symlink" >&2
 }
 
 # Parse flags.
